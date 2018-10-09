@@ -28,14 +28,22 @@ const port = 3000;
 // send data to 'missions/index.ejs' view
 // the view should display just the names of each mission
 // display the mission names as <li> in a <ul> with the class name "missions"
+// app.get("/missions/", (req, res) => {
+//   res.send(Missions);
+// });
+
+
 app.get("/missions/", (req, res) => {
-  res.send(Missions);
+  res.render("missions/index.ejs", {
+    mission: Missions
+  });
 });
 
-
-app.get("/missions/:index", (req, res) => {
-  res.render("index.ejs");
-});
+app.get("/missions/:show", (req, res) => {
+  res.render("missions/show.ejs", {
+    mission: Missions[req.params.show]
+  })
+})
 
 
 
